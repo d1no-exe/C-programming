@@ -1,0 +1,44 @@
+/*
+ * Problem:    Napisati glavni program int main() koji će na ulazu učitati jedan cijeli broj N, a na izlazu ispisati drugu najveću cifru koja se u njemu pojavljuje. Obavezno korištenje WHILE petlje.
+ * Link:       
+ * Difficulty: Medium
+ * Pattern:    Hash map
+ * Time:       25(min)
+ * Space:      O(n)
+ * Notes:      Najteze mi je bilo skontati kako da program zapamti koja cifra je najveca, a koja druga najveca. Kako bi to uradio koristio sam dvije WHILE petlje.
+ *             Revisit: 
+ */
+
+
+
+int main()
+{
+    int n, n2, drugaNajvecaCifra=0, cifra=0, najvecaCifra=0;
+    
+    scanf("%d", &n);
+    n2 = n;                                         //Korisnik unosi jedan cijeli broj, ali za potrebe WHILE petlje
+                                                    //potrebno ga je duplirati.
+    while (n != 0)
+    {
+        cifra = n % 10;                             //U prvoj WHILE petlji odredujemo najvecu cifru broja n.
+        n = n / 10;
+        
+        if (cifra > najvecaCifra)
+            najvecaCifra = cifra;
+    }
+    
+    while (n2 != 0)                                 //U drugoj WHILE petlji uporedujemo najvecu cifru sa ostalim ciframa.
+    {                           
+        cifra = n2 % 10;        
+        n2 = n2 / 10;
+        
+        if (cifra >= najvecaCifra)                  //Ukoliko je neka cifra veca ili jednaka najvecoj cifri
+            continue;                               //tada preskacemo ovu iteraciju petlje i nastavljamo sa sljedecom.
+        
+        if (cifra > drugaNajvecaCifra)              //Ukoliko cifra nije >= od najvece tada druga najveca cifra poprima tu vrijednost.
+            drugaNajvecaCifra = cifra;
+    }
+    printf("%d", drugaNajvecaCifra);
+    
+    return 0;
+}
