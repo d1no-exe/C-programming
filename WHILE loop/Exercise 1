@@ -1,0 +1,31 @@
+/*
+ * Problem:    Napisati glavni program int main() koji će na ulazu učitati jedan cijeli broj N, a na izlazu ispisati zbir cifara unenog broja. Obavezno korištenje WHILE petlje.
+ * Link:       
+ * Difficulty: Easy
+ * Pattern:    
+ * Time:       1O(min)
+ * Space:      O(n)
+ * Notes:      Trebalo mi je vremena dok skontam kako odrediti svaku pojedinacu cifru, nakon toga zadatak je poprilicno lagan.
+ *             
+ */
+
+
+
+int main()
+{
+    int n,
+        suma=0, cifre = 1;
+
+    scanf("%d", &n);            
+
+    while (n != 0)                      
+    {
+        cifre = n % 10;                 //Svaku pojedinacnu cifru odredujemo sa % operatorom 
+        n = n / 10;                     //i njenu vrijednost dodajemo u sumu.
+                                    
+        suma = suma + cifre;            //Kao kraj WHILE petlje uzeo sam argument da je n = 0
+    }                                   //jer kada neki jednocifreni broj podijelimo sa 10(u cjelobrojnom dijeljenju)
+    printf("%d \n", suma);              //rezultat je 0 i tada znamo da je kraj WHILE petlje
+
+    return 0;
+}
