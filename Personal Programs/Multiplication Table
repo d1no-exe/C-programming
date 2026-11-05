@@ -1,0 +1,71 @@
+/*
+ * Problem:    Kreirati tablicu mnozenja u kojoj korisnik unosi vrijednosti
+ * Link:       
+ * Difficulty: Medium
+ * Pattern:    
+ * Time:       25(n)
+ * Space:      O(n)
+ * Notes:      Najvaznije je osmisliti kako da program ispisuje svaki red jedan po jedan.
+ *             
+ */
+
+
+int main()
+{
+    int brojKolona, brojRedova,
+        i = 1,
+        brojCrtica = 0, mnozenje = 1;
+
+
+    printf("\t\tProgram za kreiranje tablice mnozenja.\n\n\n");
+
+    printf("Prije nego sto program kreira tablicu mnozenja, unesite broj njenih kolona i redova.\n");
+    printf("RED - horizontalni niz brojeva. (x)\n");
+    printf("KOLONA - horizontalni niz brojeva. (y)\n");
+    printf("      X  X2\n");
+    printf("---------- \n");
+    printf("Y  |   \n");                                                                                      //Korisnik sam unosi potreban broj redova i kolona tabele
+    printf("Y2 |   \n\n");
+ 
+    printf("Broj redova - ");
+    scanf("%d", &brojRedova);
+    printf("Broj kolona - ");
+    scanf("%d", &brojKolona);
+
+    while (i <= brojRedova)                                                                                  //Uz pomoc ove WHILE pretlje program ispisuje naslov/zaglavlje tabele
+    {
+        if (i == 1)
+            printf("%9d", i);                                                                               
+        else                                                                                                 
+            printf("%5d", i);
+
+        i++;
+    }
+
+    printf("\n");
+    i = 0;
+    brojCrtica = (brojRedova * 5) + 3;
+    while (i <= brojCrtica)                                                                                  //Prvo resetiramo sve parametre te uz pomoc WHILE pretlje ispisujemo potreban broj crtica
+    {
+        printf("-");
+        i++;
+    }
+
+    printf("\n");
+    i = 1;
+    while (i <= brojKolona)                                                                                  //Ova WHILE petlja ispisuje redove u kojima vrsimo mnozenje: RED * KOLONA
+    {
+        printf("%3d|", i);
+        while(mnozenje <= brojRedova)
+        {
+            printf("%5d", i * mnozenje);
+            mnozenje++;
+        }
+
+        printf("\n");
+        mnozenje = 1;
+        i++;
+    }
+
+    return 0;
+}
