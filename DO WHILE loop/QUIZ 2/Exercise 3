@@ -1,0 +1,70 @@
+/*
+ * Problem:    Napisati glavni program int main() koji će na ulazu učitati 3 cijela broja, npr.: x, y, z. Potrebno je prikazati one četverocifrene brojeve kod kojih je prva cifra s lijeve strane 
+ *             jednaka broju x (1. učitanom broju) ili y (2. učitanom broju), a pored toga proizvod cifara tih četverocifrenih brojeva mora biti jednak broju z (3. učitanom broju).
+ *             Obavezno korištenje DO WHILE petlje. 
+ * Link:       
+ * Difficulty: Hard
+ * Pattern:    
+ * Time:       1(hour)
+ * Space:      O(n)
+ * Notes:      Na kraju je Claude dosta pomogao.
+ *             
+ */
+
+
+
+int main()
+{
+    int x, y, z,
+        broj1, broj2,
+        cifra1, cifra2, cifra3, cifra4, 
+        cifra10, cifra11,
+        i;
+        
+    scanf("%d %d %d", &x, &y, &z);
+    
+    if (x < y)                  // Kako bi dodatno optimizovali kod
+    {                           // odredujemo najmanje vrijednosti 
+        broj1 = x*1000;         // cetverocifrenog broja
+        broj2 = y*1000;
+        cifra10 = x;            // cifra10 i cifra11 - nam sluze kako bi 
+        cifra11 = y;            // provjera z=... bila tacna
+    }
+    else                        
+    {
+        broj1 = y*1000;
+        broj2 = x*1000;
+        cifra10 = y;
+        cifra11 = x;
+    }
+    
+    i = broj1;                  // Ukoliko je x < y, tada prvo provjeravamo 
+    do                          // cetverocifreni broj nastao od x.
+    {                           // Ovo je potrebno uraditi kako bi izlaz
+        i++;                    // bio ispisan pravim redoslijedom.
+        cifra4 = i % 10;
+        cifra3 = (i/10)%10;
+        cifra2 = (i/100)%10;
+        
+        if (cifra10 * cifra2 * cifra3 * cifra4 == z)
+            printf("%d\n", i);
+        
+            
+    }while(i < broj1 + 900);
+    
+    i = broj2;
+    do
+    {
+        i++;
+        cifra4 = i % 10;
+        cifra3 = (i/10)%10;
+        cifra2 = (i/100)%10;
+        
+        if (cifra11 * cifra2 * cifra3 * cifra4 == z)
+            printf("%d\n", i);
+        
+            
+    }while(i < broj2 + 900);
+    
+    return 0;
+}
