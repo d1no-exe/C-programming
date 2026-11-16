@@ -1,0 +1,65 @@
+/*
+ * Problem:    Napisati glavni program int main() koji će na ulazu učitati cijeli broj N > 3 (zabraniti unos brojeva manjih ili jednakih 3) te jedan znak (karakter) C. 
+ *             Na izlazu je potrebno ispisati slovo N sa onim znakom (karakterom) koji se učitao sa ulaza. 
+ * Link:       
+ * Difficulty: Hard
+ * Pattern:    
+ * Time:       1(hour)
+ * Space:      O(n)
+ * Notes:      Nisam znako kako ispisati simbole za slovo N, izmedju lijeve i desne tangente.
+ *             
+ */
+
+
+
+int main()
+{
+    int n=0, Y=0, X, i;
+    
+    char simbol, razmak;
+    
+    do
+    {
+        scanf("%d", &n);
+    }while(n<4);
+    
+    scanf(" %c", &simbol);
+    //              Y
+    //      0***0   |                                                 Y=1
+    //      00**0   |           0(x=1) 0(x=2) *(x=3) *(x=4) 0(x=5)    Y=2 
+    //      0*0*0   |           0(x=1) *(x=2) 0(x=3) *(x=4) 0(x=5)    Y=3
+    //      0**00   |
+    //      0***0   |
+    //    X -----
+    do                              // Prva DO WHILE petlja - ispisuje
+    {                               // svaki red od 1 do n
+        Y++;
+        
+        razmak = simbol;
+        i = 0;
+        
+        printf("%c", simbol);       // U pitanju je slovo N, pa ce na prvom 
+        X=1;                        // i zadnjem mjestu svakog reda biti simbol 
+                                        
+        
+        
+        do                          // Druga petlja - ispisuje potrebne simbole
+        {                           // izmedju prvog i zadnje kolone
+            i++;                    
+            X++;                    // i - broj mjesta izmedu dvije kranje kolone
+                                    // X - pozicija 'simbola' koji se ispisuje
+            if(X == Y)
+                razmak = simbol;    // ukoliko je X = trenutnoj vrijednosti Y
+            else                    // data se ispisuje simbol, ako nije
+                razmak = ' ';       // ispisuje se prazno mjesto
+                
+            printf("%c", razmak);
+            
+        }while(i < n-2);
+        
+        printf("%c\n", simbol);
+        
+    }while(Y < n);
+    
+    return 0;
+}
